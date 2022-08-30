@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css2?family=Nunito:wght@100;200;300;400;500;600;800;900&display=swap);
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +7,8 @@
 }
 
 body {
-  background-color: black;
+  font-family: 'Nunito', sans-serif;
+  background-image: linear-gradient(#a4b5ff, #003a52);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -13,16 +16,109 @@ body {
   align-items: center;
 }
 
-.caixa-principal {
+.container {
   font-size: 100px;
   color: #fff;
   width: 500px;
   text-align: center;
+  background-image: linear-gradient(#3362c0, #0082b9) ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  position: relative;
 }
 
-button {
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
+.container, .counter {
+  box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.336);
+  border-radius: 15px;
+}
+
+.container .counter {
+  position: absolute;
+  background-color: #5fbbf4ab;
+  padding: 10px 150px;
+}
+
+.container .counter span {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.438);
+}
+
+.container .players-icons {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.container .players-icons i {
+  font-size: 50px;
+  padding: 20px;
+  width: 100px;
+  height: 100px;
+  transition: .5s;
+  border: 5px solid transparent;
   cursor: pointer;
+}
+
+.container .players-icons i:hover:first-child {
+  border-radius: 100%;
+  border: 5px solid rgb(10, 192, 10);
+  color: rgb(10, 192, 10);
+}
+
+.container .players-icons i:hover:nth-child(2) {
+  border-radius: 100%;
+  border: 5px solid yellow;
+  color: yellow;
+}
+
+.container .players-icons i:hover:last-child {
+  border-radius: 100%;
+  border: 5px solid red;
+  color: red;
+}
+
+@media(max-width: 810px) {
+  .counter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media(max-width: 580px) {
+  .container {
+    width: 80%;
+  }
+
+  .counter span {
+    font-size: 80px;
+  }
+}
+
+@media(max-width: 480px) {
+  .container {
+    height: 300px;
+  }
+
+  .counter {
+    top: 43px;
+  }
+  .counter span {
+    font-size: 70px;
+  }
+
+  .container .players-icons {
+    font-size: 30px;
+    padding: 10px;
+  }
+
+  .container .players-icons i[disabled]hover {
+    font-size: 30px;
+    border: 5px solid transparent;
+  }
 }

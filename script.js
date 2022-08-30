@@ -1,47 +1,46 @@
-"use strict"
-
 const start = document.querySelector('#start')
 const pause = document.querySelector('#pause')
 const stop = document.querySelector('#stop')
+const counter = document.querySelector('#counter').innerText = '00:00:00'
 
-let hh = 0
-let mm = 0
-let ss = 0
+let hours = 0
+let minutes = 0
+let seconds = 0
 
-const tempo = 10 // quantos milesimos equivalem 1 segundo
-let cron
+const mileseconds = 10 // quantos milesimos equivalem 1 segundo
+let chronometer
 
-start.onclick = function start() {
-    cron = setInterval(() => {
-        timer()
-    }, tempo)
+start.onclick = () => {
+  chronometer = setInterval(() => {
+    timer()
+  }, mileseconds)
 }
 
-pause.onclick = function pause() {
-    clearInterval(cron)
+pause.onclick = () => {
+  clearInterval(chronometer)
 }
 
-stop.onclick = function stop() {
-    clearInterval(cron)
-    hh = 0
-    mm = 0
-    ss = 0
+stop.onclick = () => {
+  clearInterval(chronometer)
+  hours = 0
+  minutes = 0
+  seconds = 0
 
-    document.querySelector('#counter').innerText = '00:00:00'
+  document.querySelector('#counter').innerText = '00:00:00'
 }
 
-function timer() {
-    ss++
+const timer = () => {
+  seconds++
 
-    if (ss == 60) {
-        ss = 0
-        mm++
+  if (seconds === 60) {
+    seconds = 00
+    minutes++
 
-        if (mm == 60) {
-            mm = 0
-            hh++
-        }
+    if (minutes === 60) {
+      minutes = 00
+      hours++
     }
-    let format = (hh < 10 ? '0' + hh : hh) + ':' + (mm < 10 ? '0' + mm : mm) + ':' + (ss < 10 ? '0' + ss : ss)
-    document.querySelector('#counter').innerText = format
+  }
+  let format = `${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`
+  document.querySelector('#counter').innerText = format
 }
